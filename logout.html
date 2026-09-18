@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#0D241A">
+    <title>Sesi Selesai - Warung Berkah</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-container">
+    <header class="hero-banner" style="height: 180px;">
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-top-row">
+            <div class="glass-pill" style="background: rgba(220, 38, 38, 0.4); border-color: rgba(220, 38, 38, 0.5);">
+                🔴 Sesi Terputus
+            </div>
+            <div class="glass-pill weather-pill">
+                🏪 Buka 24 Jam
+            </div>
+        </div>
+
+        <div class="hero-bottom-text">
+            <div class="hero-subtitle">STATUS KONEKSI</div>
+            <h1 class="hero-title" style="font-size: 19px;">Sesi Telah Selesai</h1>
+        </div>
+    </header>
+
+    <main class="app-body">
+        <div class="receipt-box" style="margin-top: 8px;">
+            <div class="receipt-row">
+                <span class="receipt-label">User Terputus</span>
+                <span class="receipt-val">$(username)</span>
+            </div>
+            <div class="receipt-row">
+                <span class="receipt-label">Total Waktu Aktif</span>
+                <span class="receipt-val highlight">$(uptime)</span>
+            </div>
+            <div class="receipt-row">
+                <span class="receipt-label">Total Penggunaan</span>
+                <span class="receipt-val">$(bytes-in-nice) / $(bytes-out-nice)</span>
+            </div>
+        </div>
+
+        <a href="login.html" class="btn-primary-action" style="margin-top: 12px;">
+            <span>Masuk Kembali</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+        </a>
+
+        <footer class="app-footer">
+            <p><strong>Warung Berkah Kelontong</strong> • Sampai Jumpa Kembali</p>
+        </footer>
+    </main>
+</div>
+
+</body>
+</html>

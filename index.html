@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#0D241A">
+    <title>Warung Berkah - Hotspot WiFi 24 Jam</title>
+    <style>
+/* ==========================================================================
+   WARUNG BERKAH KELONTONG - ANDROID APP DESIGN SYSTEM
+   Inspired by Modern Resort & Retail Hotspot Portals with Enhanced Polish
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Mono:wght@700&display=swap');
+
+:root {
+    /* Color Palette */
+    --bg-page: #EAF0EE;
+    --card-surface: #FFFFFF;
+    
+    /* Primary Emerald / Teal Gradient */
+    --primary: #0D7A57;
+    --primary-hover: #096144;
+    --primary-light: #129E71;
+    --primary-gradient: linear-gradient(135deg, #0C7A58 0%, #10A678 100%);
+    --primary-soft: #E8F7F1;
+    --primary-border: #C8EBDC;
+    
+    /* Amber & Warm Accents */
+    --accent-amber: #F59E0B;
+    --accent-amber-soft: #FEF3C7;
+    --accent-amber-text: #B45309;
+    
+    --accent-terracotta: #EA580C;
+    --accent-terracotta-soft: #FFEDD5;
+    
+    /* Neutral / Text */
+    --text-main: #13241D;
+    --text-muted: #5E7168;
+    --text-dim: #94A39D;
+    
+    /* Borders & Dividers */
+    --border-subtle: #E2ECE7;
+    --border-focus: #0FA87A;
+    --border-light: #EDF4F0;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(13, 122, 87, 0.06);
+    --shadow-card: 0 4px 16px -2px rgba(13, 122, 87, 0.08);
+    --shadow-btn: 0 6px 20px -2px rgba(13, 122, 87, 0.3);
+    --shadow-phone: 0 16px 40px -8px rgba(13, 36, 29, 0.15);
+    
+    /* Radii */
+    --radius-xs: 8px;
+    --radius-sm: 12px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    --radius-full: 9999px;
+    
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'Space Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    background-color: var(--bg-page);
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: linear-gradient(180deg, #DCEAE4 0%, var(--bg-page) 100%);
+    font-family: var(--font-sans);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   APP CONTAINER (MOBILE-FIRST FULL VIEW / DESKTOP SMARTPHONE MOCKUP)
+   ========================================================================== */
+.app-container {
+    width: 100%;
+    max-width: 440px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: var(--card-surface);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: var(--shadow-phone);
+    margin: 0 auto;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   HERO HEADER WITH CURVED IMAGE BANNER
+   ========================================================================== */
+.hero-banner {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    background-color: #0D241A;
+    background-image: url('sembako-bg.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 0 0 32px 32px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: calc(14px + env(safe-area-inset-top, 0px)) 16px 20px;
+    box-shadow: 0 8px 24px -6px rgba(13, 36, 29, 0.25);
+    flex-shrink: 0;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 30, 22, 0.45) 0%, rgba(10, 30, 22, 0.2) 40%, rgba(8, 26, 19, 0.92) 100%);
+    pointer-events: none;
+}
+
+/* Top Status Badges Row */
+.hero-top-row {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.glass-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(13, 36, 29, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 11px;
+    border-radius: var(--radius-full);
+    letter-spacing: 0.2px;
+}
+
+.glass-pill.weather-pill {
+    background: rgba(245, 158, 11, 0.25);
+    border-color: rgba(245, 158, 11, 0.4);
+    color: #FEF3C7;
+}
+
+.live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10B981;
+    box-shadow: 0 0 8px #10B981;
+    animation: livePulse 2s infinite ease-in-out;
+}
+
+@keyframes livePulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+/* Bottom Titles in Hero */
+.hero-bottom-text {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-subtitle {
+    font-size: 10.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #34D399;
+    margin-bottom: 2px;
+}
+
+.hero-title {
+    font-size: 21px;
+    font-weight: 900;
+    color: #FFFFFF;
+    letter-spacing: -0.4px;
+    line-height: 1.2;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   APP MAIN CONTENT AREA
+   ========================================================================== */
+.app-body {
+    padding: 14px 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+}
+
+/* FEATURED INFO CARD */
+.info-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #FFFFFF;
+    border: 1.5px solid var(--primary-border);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    box-shadow: var(--shadow-sm);
+    margin-top: -6px;
+}
+
+.info-icon-badge {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-sm);
+    background: var(--primary-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    flex-shrink: 0;
+    box-shadow: 0 3px 10px rgba(13, 122, 87, 0.25);
+}
+
+.info-icon-badge svg {
+    width: 22px;
+    height: 22px;
+}
+
+.info-content h2 {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1.25;
+}
+
+.info-content p {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    line-height: 1.35;
+}
+
+/* ==========================================================================
+   PILL SEGMENTED TAB SWITCHER
+   ========================================================================== */
+.pill-tabs {
+    display: flex;
+    background: #F0F6F3;
+    padding: 4px;
+    border-radius: var(--radius-full);
+    gap: 4px;
+    border: 1px solid var(--border-subtle);
+}
+
+.tab-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 10px 14px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all 0.22s ease;
+}
+
+.tab-btn.active {
+    background: #FFFFFF;
+    color: var(--primary);
+    box-shadow: 0 2px 8px rgba(13, 122, 87, 0.12);
+}
+
+.tab-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* ==========================================================================
+   INPUT FORM & LABELS
+   ========================================================================== */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2px;
+}
+
+.form-label {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.form-helper-link {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.input-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-leading-icon {
+    position: absolute;
+    left: 14px;
+    color: var(--primary-light);
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+.input-leading-icon svg {
+    width: 19px;
+    height: 19px;
+}
+
+.android-input {
+    width: 100%;
+    height: 52px;
+    background: #FFFFFF;
+    border: 2px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 0 42px 0 44px;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-main);
+    transition: all 0.2s ease;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.android-input:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    background: #FAFCFB;
+    box-shadow: 0 0 0 4px rgba(16, 166, 120, 0.12);
+}
+
+.android-input.code-font {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.android-input::placeholder {
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-dim);
+    letter-spacing: 0;
+}
+
+.input-trailing-action {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    border-radius: 50%;
+}
+
+.input-trailing-action:hover, .input-trailing-action:active {
+    color: var(--primary);
+}
+
+/* ERROR NOTIFICATION */
+.error-banner {
+    background: #FEF2F2;
+    border: 1.5px solid #FECACA;
+    color: #991B1B;
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* MAIN SUBMIT BUTTON */
+.btn-primary-action {
+    width: 100%;
+    height: 52px;
+    background: var(--primary-gradient);
+    color: #FFFFFF;
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    cursor: pointer;
+    box-shadow: var(--shadow-btn);
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-primary-action:active {
+    transform: scale(0.985);
+    filter: brightness(0.95);
+}
+
+.btn-primary-action svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.2s ease;
+}
+
+.btn-primary-action:hover svg {
+    transform: translateX(3px);
+}
+
+/* ==========================================================================
+   QUICK ACTION BUTTONS (2 COLUMNS)
+   ========================================================================== */
+.quick-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.quick-pill-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    background: #F0F6F3;
+    border: 1.5px solid var(--border-subtle);
+    padding: 11px 12px;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 12.5px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.quick-pill-btn:hover {
+    background: var(--primary-soft);
+    border-color: var(--primary-border);
+    color: var(--primary);
+}
+
+.quick-pill-btn:active {
+    transform: scale(0.98);
+}
+
+.quick-pill-btn svg {
+    width: 17px;
+    height: 17px;
+    color: var(--primary);
+}
+
+/* ==========================================================================
+   PILIHAN PAKET WIFI (PRICE PACKAGE CARDS)
+   ========================================================================== */
+.section-divider-dash {
+    border-top: 1.5px dashed var(--border-subtle);
+    margin: 4px 0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.section-badge-speed {
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--accent-amber-text);
+    background: var(--accent-amber-soft);
+    padding: 3px 8px;
+    border-radius: var(--radius-full);
+}
+
+.package-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.package-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #FFFFFF;
+    border: 1.5px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+}
+
+.package-card:hover {
+    border-color: var(--primary-light);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(13, 122, 87, 0.1);
+}
+
+.package-card:active {
+    transform: scale(0.985);
+}
+
+.package-left {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.package-icon-box {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: #F0F6F3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+}
+
+.package-info h3 {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.2;
+}
+
+.package-info p {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.package-right {
+    text-align: right;
+}
+
+.package-price {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.package-action-text {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2px;
+}
+
+/* ==========================================================================
+   HORIZONTAL TAGS / PRODUK TOKO STRIP
+   ========================================================================== */
+.tags-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.tags-title {
+    font-size: 10.5px;
+    font-weight: 800;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tags-scroll {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.tags-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.tag-pill {
+    white-space: nowrap;
+    background: #F0F6F3;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    padding: 5px 11px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.app-footer {
+    text-align: center;
+    margin-top: auto;
+    padding-top: 14px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    font-size: 11px;
+    color: var(--text-dim);
+}
+
+.app-footer strong {
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   STATUS & RECEIPT CARD
+   ========================================================================== */
+.receipt-box {
+    background: #F9FCFA;
+    border: 1.5px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.receipt-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12.5px;
+}
+
+.receipt-label {
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.receipt-val {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.receipt-val.highlight {
+    color: var(--primary);
+    background: var(--primary-soft);
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+
+.btn-disconnect {
+    width: 100%;
+    height: 48px;
+    background: #FEF2F2;
+    color: #DC2626;
+    border: 1.5px solid #FECACA;
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-disconnect:active {
+    background: #DC2626;
+    color: #FFFFFF;
+}
+
+/* ==========================================================================
+   MODAL QR SCANNER (BOTTOM SHEET)
+   ========================================================================== */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 30, 22, 0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal-sheet {
+    background: #FFFFFF;
+    width: 100%;
+    max-width: 440px;
+    border-radius: 28px 28px 0 0;
+    box-shadow: var(--shadow-phone);
+    padding: 22px 20px calc(22px + env(safe-area-inset-bottom, 0px));
+    animation: sheetSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes sheetSlideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.modal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.modal-head h3 {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.modal-close-btn {
+    background: #F0F6F3;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 18px;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-step-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 12.5px;
+    color: var(--text-muted);
+}
+
+.modal-step-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.step-num {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* LOADING DOTS */
+.loading-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 20px 0;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    animation: dotPulse 1.4s infinite ease-in-out both;
+}
+
+.dot:nth-child(1) { animation-delay: -0.32s; }
+.dot:nth-child(2) { animation-delay: -0.16s; }
+.dot:nth-child(3) { animation-delay: 0s; }
+
+@keyframes dotPulse {
+    0%, 80%, 100% { transform: scale(0.2); opacity: 0.3; }
+    40% { transform: scale(1); opacity: 1; }
+}
+
+/* Media Query for Desktop / Laptop Preview */
+@media (min-width: 600px) {
+    body {
+        padding: 24px 16px;
+        align-items: center;
+    }
+    .app-container {
+        min-height: unset;
+        border-radius: 36px;
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        overflow: hidden;
+    }
+    .modal-backdrop {
+        align-items: center;
+        padding: 16px;
+    }
+    .modal-sheet {
+        border-radius: var(--radius-lg);
+        padding: 22px 20px;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div class="app-container">
+    <!-- Hero Banner with Curved Bottom -->
+    <header class="hero-banner">
+        <div class="hero-overlay"></div>
+        
+        <!-- Top Status Row -->
+        <div class="hero-top-row">
+            <div class="glass-pill">
+                <span class="live-dot"></span>
+                Hotspot Area Aktif
+            </div>
+            <div class="glass-pill weather-pill">
+                🏪 Buka 24 Jam
+            </div>
+        </div>
+
+        <!-- Bottom Titles in Hero -->
+        <div class="hero-bottom-text">
+            <div class="hero-subtitle">SEMBAKO & KELONTONG MODERN</div>
+            <h1 class="hero-title">Warung Berkah WiFi</h1>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="app-body">
+        <!-- Featured Info Card -->
+        <div class="info-card">
+            <div class="info-icon-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+                    <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+                    <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                    <line x1="12" y1="20" x2="12.01" y2="20"></line>
+                </svg>
+            </div>
+            <div class="info-content">
+                <h2>Warung Berkah High-Speed WiFi</h2>
+                <p>Nikmati koneksi internet cepat & stabil selama belanja Anda</p>
+            </div>
+        </div>
+
+        <!-- Pill Segmented Tabs -->
+        <div class="pill-tabs">
+            <button type="button" id="tab-voucher" class="tab-btn active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                    <line x1="7" y1="15" x2="7.01" y2="15"></line>
+                    <line x1="11" y1="15" x2="13" y2="15"></line>
+                </svg>
+                Voucher Toko
+            </button>
+            <button type="button" id="tab-member" class="tab-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                Member / Kasir
+            </button>
+        </div>
+
+        <!-- Alert Error -->
+        <div id="error-box" class="error-banner" style="display: none;">
+            <span>⚠️</span>
+            <div id="error-msg-text">Silakan masukkan kode voucher Anda</div>
+        </div>
+
+        <!-- MikroTik Login Form -->
+        <form id="login-form" action="$(link-login-only)" method="post">
+            <input type="hidden" name="dst" value="$(link-orig)" />
+            <input type="hidden" name="popup" value="true" />
+
+            <!-- Input Username / Voucher -->
+            <div class="form-group">
+                <div class="form-label-row">
+                    <label id="input-label-username" for="username" class="form-label">Kode Voucher Toko</label>
+                    <a href="javascript:void(0)" id="input-helper-link" class="form-helper-link">Tertera di voucher</a>
+                </div>
+                <div class="input-box">
+                    <span class="input-leading-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path d="M21 2l-2 2m-2-2l2 2m-4 4l2-2m-2 2l-6 6a5 5 0 0 1-7-7l6-6m2 2l2-2"></path>
+                        </svg>
+                    </span>
+                    <input type="text" id="username" name="username" placeholder="MASUKKAN KODE VOUCHER" required class="android-input code-font" autocomplete="off" autocapitalize="characters" autofocus>
+                    <button type="button" id="btn-clear-user" class="input-trailing-action" aria-label="Hapus Teks" style="display: none;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Input Password (Member Mode) -->
+            <div id="password-container" class="form-group" style="display: none; margin-top: 10px;">
+                <div class="form-label-row">
+                    <label for="password" class="form-label">Password Akun</label>
+                </div>
+                <div class="input-box">
+                    <span class="input-leading-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </span>
+                    <input type="password" id="password" name="password" placeholder="Password member" class="android-input" autocomplete="off">
+                    <button type="button" id="toggle-password" class="input-trailing-action" aria-label="Toggle Password">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Submit Button -->
+            <button type="submit" class="btn-primary-action" style="margin-top: 12px;">
+                <span id="btn-submit-text">Sambungkan WiFi Toko</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </button>
+        </form>
+
+        <!-- Quick Action Grid (2 Columns) -->
+        <div class="quick-grid">
+            <div id="shortcut-scan-btn" class="quick-pill-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M3 7V5a2 2 0 0 1 2-2h2"></path>
+                    <path d="M17 3h2a2 2 0 0 1 2 2v2"></path>
+                    <path d="M21 17v2a2 2 0 0 1-2 2h-2"></path>
+                    <path d="M7 21H5a2 2 0 0 1-2-2v-2"></path>
+                </svg>
+                Scan QR Voucher
+            </div>
+            <a href="https://wa.me/6281234567890?text=Halo%20Kasir%20Warung%20Berkah,%20saya%20mau%20beli%20voucher%20WiFi" target="_blank" class="quick-pill-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                Bantuan & Kasir
+            </a>
+        </div>
+
+        <div class="section-divider-dash"></div>
+
+        <!-- Pilihan Paket WiFi (Price List Cards) -->
+        <div class="section-header">
+            <div class="section-title">
+                <span style="color: var(--accent-terracotta);">🏷️</span> Pilihan Paket WiFi
+            </div>
+            <div class="section-badge-speed">
+                Kecepatan s/d 20 Mbps
+            </div>
+        </div>
+
+        <div class="package-list">
+            <!-- Paket 1 -->
+            <div class="package-card" onclick="selectPackage('2JAM')">
+                <div class="package-left">
+                    <div class="package-icon-box">🛒</div>
+                    <div class="package-info">
+                        <h3>Paket Santai Toko</h3>
+                        <p>⏱️ 2 Jam • Speed up to 5 Mbps</p>
+                    </div>
+                </div>
+                <div class="package-right">
+                    <div class="package-price">Rp 2.000</div>
+                    <div class="package-action-text">Pilih Paket →</div>
+                </div>
+            </div>
+
+            <!-- Paket 2 -->
+            <div class="package-card" onclick="selectPackage('6JAM')">
+                <div class="package-left">
+                    <div class="package-icon-box">📦</div>
+                    <div class="package-info">
+                        <h3>Paket Nongkrong Asik</h3>
+                        <p>⏱️ 6 Jam • Speed up to 10 Mbps</p>
+                    </div>
+                </div>
+                <div class="package-right">
+                    <div class="package-price">Rp 5.000</div>
+                    <div class="package-action-text">Pilih Paket →</div>
+                </div>
+            </div>
+
+            <!-- Paket 3 -->
+            <div class="package-card" onclick="selectPackage('24JAM')">
+                <div class="package-left">
+                    <div class="package-icon-box">🚀</div>
+                    <div class="package-info">
+                        <h3>Paket Puas 24 Jam</h3>
+                        <p>⏱️ 24 Jam • Speed up to 20 Mbps</p>
+                    </div>
+                </div>
+                <div class="package-right">
+                    <div class="package-price">Rp 10.000</div>
+                    <div class="package-action-text">Pilih Paket →</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Spot Populer / Layanan Toko Tags Strip -->
+        <div class="tags-section" style="margin-top: 4px;">
+            <div class="tags-title">LAYANAN & PRODUK TOKO</div>
+            <div class="tags-scroll">
+                <div class="tag-pill">🍚 Beras & Minyak</div>
+                <div class="tag-pill">🥚 Telur Segar</div>
+                <div class="tag-pill">☕ Kopi & Minuman</div>
+                <div class="tag-pill">📱 Pulsa & PLN</div>
+                <div class="tag-pill">🛵 Pesan Antar</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p><strong>Warung Berkah Kelontong</strong> • Hotspot WiFi 24 Jam</p>
+        </footer>
+    </main>
+</div>
+
+<!-- Modal Panduan Scan QR (Android Bottom Sheet) -->
+<div id="scanner-modal" class="modal-backdrop" style="display: none;">
+    <div class="modal-sheet">
+        <div class="modal-head">
+            <h3>Cara Login Scan QR</h3>
+            <button type="button" id="close-scanner" class="modal-close-btn" aria-label="Tutup">&times;</button>
+        </div>
+        <div class="modal-step-list">
+            <div class="modal-step-item">
+                <span class="step-num">1</span>
+                <span>Buka aplikasi kamera ponsel Anda atau Google Lens.</span>
+            </div>
+            <div class="modal-step-item">
+                <span class="step-num">2</span>
+                <span>Arahkan kamera ke kode QR yang tertera pada voucher toko.</span>
+            </div>
+            <div class="modal-step-item">
+                <span class="step-num">3</span>
+                <span>Ketuk tautan notifikasi yang muncul di layar untuk langsung masuk otomatis.</span>
+            </div>
+        </div>
+        <button type="button" id="close-guide-btn" class="btn-primary-action" style="margin-top: 16px; height: 46px; font-size: 14px;">
+            Saya Mengerti
+        </button>
+    </div>
+</div>
+
+<script>
+/**
+ * Warung Berkah Kelontong - Hotspot WiFi Portal Logic
+ * Android Native Feel & High-Speed Mikrotik Integration
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+    // --- Elements ---
+    const tabVoucher = document.getElementById('tab-voucher');
+    const tabMember = document.getElementById('tab-member');
+    
+    const inputLabel = document.getElementById('input-label-username');
+    const inputHelperLink = document.getElementById('input-helper-link');
+    const usernameInput = document.getElementById('username');
+    const btnClearUser = document.getElementById('btn-clear-user');
+    const passwordContainer = document.getElementById('password-container');
+    const passwordInput = document.getElementById('password');
+    const loginForm = document.getElementById('login-form');
+    const btnSubmitText = document.getElementById('btn-submit-text');
+    
+    const togglePasswordBtn = document.getElementById('toggle-password');
+    const errorBox = document.getElementById('error-box');
+    const errorMsgText = document.getElementById('error-msg-text');
+
+    let currentTab = 'voucher'; // 'voucher' | 'member'
+
+    // --- TAB SWITCHING ---
+    function switchToVoucher() {
+        currentTab = 'voucher';
+        if (tabVoucher) tabVoucher.classList.add('active');
+        if (tabMember) tabMember.classList.remove('active');
+        
+        if (inputLabel) inputLabel.textContent = 'Kode Voucher Toko';
+        if (inputHelperLink) {
+            inputHelperLink.textContent = 'Tertera di voucher';
+            inputHelperLink.style.display = 'inline';
+        }
+        if (usernameInput) {
+            usernameInput.placeholder = 'MASUKKAN KODE VOUCHER';
+            usernameInput.classList.add('code-font');
+            usernameInput.setAttribute('autocapitalize', 'characters');
+        }
+        if (passwordContainer) passwordContainer.style.display = 'none';
+        if (passwordInput) {
+            passwordInput.required = false;
+            passwordInput.value = '';
+        }
+        if (btnSubmitText) btnSubmitText.textContent = 'Sambungkan WiFi Toko';
+        clearError();
+        if (usernameInput) usernameInput.focus();
+    }
+
+    function switchToMember() {
+        currentTab = 'member';
+        if (tabMember) tabMember.classList.add('active');
+        if (tabVoucher) tabVoucher.classList.remove('active');
+        
+        if (inputLabel) inputLabel.textContent = 'Username Member / Kasir';
+        if (inputHelperLink) {
+            inputHelperLink.textContent = 'Akun Toko';
+        }
+        if (usernameInput) {
+            usernameInput.placeholder = 'Masukkan username member';
+            usernameInput.classList.remove('code-font');
+            usernameInput.setAttribute('autocapitalize', 'none');
+        }
+        if (passwordContainer) passwordContainer.style.display = 'block';
+        if (passwordInput) {
+            passwordInput.required = true;
+        }
+        if (btnSubmitText) btnSubmitText.textContent = 'Masuk Sebagai Member';
+        clearError();
+        if (usernameInput) usernameInput.focus();
+    }
+
+    if (tabVoucher) {
+        tabVoucher.addEventListener('click', (e) => {
+            e.preventDefault();
+            switchToVoucher();
+        });
+    }
+
+    if (tabMember) {
+        tabMember.addEventListener('click', (e) => {
+            e.preventDefault();
+            switchToMember();
+        });
+    }
+
+    // --- USERNAME CLEAR BUTTON LOGIC ---
+    if (usernameInput && btnClearUser) {
+        usernameInput.addEventListener('input', () => {
+            btnClearUser.style.display = usernameInput.value.length > 0 ? 'flex' : 'none';
+        });
+
+        btnClearUser.addEventListener('click', () => {
+            usernameInput.value = '';
+            btnClearUser.style.display = 'none';
+            usernameInput.focus();
+        });
+    }
+
+    // --- PASSWORD EYE TOGGLE ---
+    if (togglePasswordBtn && passwordInput) {
+        togglePasswordBtn.addEventListener('click', () => {
+            const isPassword = passwordInput.type === 'password';
+            passwordInput.type = isPassword ? 'text' : 'password';
+            
+            if (isPassword) {
+                togglePasswordBtn.innerHTML = `
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                    </svg>
+                `;
+            } else {
+                togglePasswordBtn.innerHTML = `
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                `;
+            }
+        });
+    }
+
+    // --- AUTO-LOGIN VIA URL QUERY PARAMETERS (QR SCAN REDIRECT) ---
+    const urlParams = new URLSearchParams(window.location.search);
+    const queryUser = urlParams.get('username') || urlParams.get('user');
+    const queryPass = urlParams.get('password') || urlParams.get('pass');
+
+    if (queryUser) {
+        if (usernameInput) usernameInput.value = '';
+        if (passwordInput) passwordInput.value = '';
+
+        const autoLoginOverlay = document.createElement('div');
+        autoLoginOverlay.className = 'modal-backdrop';
+        autoLoginOverlay.style.zIndex = '2000';
+        autoLoginOverlay.innerHTML = `
+            <div class="modal-sheet" style="text-align: center; border-radius: 24px; margin: auto; max-width: 320px;">
+                <h3 style="color: var(--primary); margin-bottom: 8px; font-size: 15px;">Mendeteksi QR Voucher</h3>
+                <div class="loading-dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <p style="font-size: 12px; color: var(--text-muted); font-weight: 600;">Menghubungkan otomatis ke WiFi...</p>
+            </div>
+        `;
+        document.body.appendChild(autoLoginOverlay);
+
+        setTimeout(() => {
+            if (queryPass) {
+                switchToMember();
+                if (usernameInput) usernameInput.value = queryUser;
+                if (passwordInput) passwordInput.value = queryPass;
+            } else {
+                switchToVoucher();
+                if (usernameInput) usernameInput.value = queryUser;
+            }
+
+            setTimeout(() => {
+                if (autoLoginOverlay) autoLoginOverlay.remove();
+                if (loginForm) {
+                    if (isDemoEnv()) {
+                        simulateLogin(queryPass ? 'Member' : 'Voucher', queryUser);
+                    } else {
+                        loginForm.submit();
+                    }
+                }
+            }, 800);
+        }, 1000);
+    }
+
+    // --- FORM SUBMIT LOGIC ---
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            const uVal = usernameInput ? usernameInput.value.trim() : '';
+            const pVal = passwordInput ? passwordInput.value.trim() : '';
+
+            if (currentTab === 'voucher') {
+                if (!uVal) {
+                    e.preventDefault();
+                    showError('Silakan masukkan kode voucher Anda!');
+                    return;
+                }
+                // MikroTik voucher standard: password equals username
+                if (passwordInput) passwordInput.value = uVal.toUpperCase();
+                
+                if (isDemoEnv()) {
+                    e.preventDefault();
+                    simulateLogin('Voucher', uVal.toUpperCase());
+                }
+            } else {
+                if (!uVal || !pVal) {
+                    e.preventDefault();
+                    showError('Lengkapi username dan password member Anda!');
+                    return;
+                }
+                
+                if (isDemoEnv()) {
+                    e.preventDefault();
+                    simulateLogin('Member', uVal);
+                }
+            }
+        });
+    }
+
+    // --- ERROR HELPERS ---
+    function showError(msg) {
+        if (errorBox) {
+            if (errorMsgText) {
+                errorMsgText.textContent = msg;
+            } else {
+                errorBox.innerHTML = `<span>⚠️</span> <div>${msg}</div>`;
+            }
+            errorBox.style.display = 'flex';
+        } else {
+            alert(msg);
+        }
+    }
+
+    function clearError() {
+        if (errorBox) {
+            errorBox.style.display = 'none';
+        }
+    }
+
+    function isDemoEnv() {
+        return window.location.hostname === 'localhost' || 
+               window.location.hostname === '127.0.0.1' || 
+               window.location.protocol === 'file:';
+    }
+
+    function simulateLogin(type, name) {
+        localStorage.setItem('maduranet_active', 'true');
+        localStorage.setItem('maduranet_username', name);
+        localStorage.setItem('maduranet_type', type);
+        localStorage.setItem('maduranet_ip', '192.168.100.23');
+        localStorage.setItem('maduranet_mac', '00:1A:2B:3C:4D:5E');
+        localStorage.setItem('maduranet_login_time', new Date().toLocaleTimeString());
+        
+        window.location.href = 'redirect.html';
+    }
+
+    // --- QR SCANNER MODAL CONTROLLER ---
+    const scannerModal = document.getElementById('scanner-modal');
+    const shortcutScanBtn = document.getElementById('shortcut-scan-btn');
+    const closeScanner = document.getElementById('close-scanner');
+    const closeGuideBtn = document.getElementById('close-guide-btn');
+
+    function openScannerModal(e) {
+        if (e) e.preventDefault();
+        if (scannerModal) scannerModal.style.display = 'flex';
+    }
+
+    function closeScannerModal(e) {
+        if (e) e.preventDefault();
+        if (scannerModal) scannerModal.style.display = 'none';
+    }
+
+    if (shortcutScanBtn) shortcutScanBtn.addEventListener('click', openScannerModal);
+    if (closeScanner) closeScanner.addEventListener('click', closeScannerModal);
+    if (closeGuideBtn) closeGuideBtn.addEventListener('click', closeScannerModal);
+
+    if (scannerModal) {
+        scannerModal.addEventListener('click', (e) => {
+            if (e.target === scannerModal) {
+                closeScannerModal();
+            }
+        });
+    }
+});
+
+// --- HELPER UNTUK MEMILIH PAKET ---
+function selectPackage(pkgCode) {
+    const usernameInput = document.getElementById('username');
+    if (usernameInput) {
+        usernameInput.focus();
+        usernameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+
+// --- OFFLINE SIMULATOR FOR STATUS PAGE ---
+function initStatusPage() {
+    const active = localStorage.getItem('maduranet_active');
+    const isLocal = window.location.hostname === 'localhost' || 
+                    window.location.hostname === '127.0.0.1' || 
+                    window.location.protocol === 'file:';
+                    
+    if (active !== 'true' && isLocal) {
+        window.location.href = 'login.html';
+        return;
+    }
+
+    const username = localStorage.getItem('maduranet_username') || 'Tamu-Warung';
+    const type = localStorage.getItem('maduranet_type') || 'Voucher Toko';
+    const ip = localStorage.getItem('maduranet_ip') || '192.168.100.23';
+    const mac = localStorage.getItem('maduranet_mac') || '00:1A:2B:3C:4D:5E';
+
+    const userEl = document.getElementById('stat-username');
+    const ipEl = document.getElementById('stat-ip');
+    const macEl = document.getElementById('stat-mac');
+    const uptimeEl = document.getElementById('stat-uptime');
+    const typeEl = document.getElementById('stat-type');
+    
+    if (userEl) userEl.textContent = username;
+    if (ipEl) ipEl.textContent = ip;
+    if (macEl) macEl.textContent = mac;
+    if (typeEl) typeEl.textContent = type;
+
+    let count = 0;
+    setInterval(() => {
+        count++;
+        let hrs = Math.floor(count / 3600);
+        let mins = Math.floor((count % 3600) / 60);
+        let secs = count % 60;
+        
+        let hrsStr = hrs > 0 ? hrs + 'j ' : '';
+        let minsStr = mins > 0 ? mins + 'm ' : '';
+        let secsStr = secs + 's';
+        
+        if (uptimeEl) uptimeEl.textContent = hrsStr + minsStr + secsStr;
+    }, 1000);
+
+    const logoutForm = document.getElementById('logout-form');
+    if (logoutForm && isLocal) {
+        logoutForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            localStorage.clear();
+            window.location.href = 'logout.html';
+        });
+    }
+}
+
+</script>
+</body>
+</html>

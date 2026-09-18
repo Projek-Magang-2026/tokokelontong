@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%" fill="none">
+  <!-- Background circle with subtle glow -->
+  <circle cx="50" cy="50" r="45" fill="#005C3E" />
+  <circle cx="50" cy="50" r="42" stroke="rgba(255, 255, 255, 0.15)" stroke-width="2" />
+  
+  <!-- Wi-Fi Signals radiating from the basket -->
+  <!-- Outer Signal Wave -->
+  <path d="M25 40 A35 35 0 0 1 75 40" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" opacity="0.4" />
+  <!-- Middle Signal Wave -->
+  <path d="M33 48 A24 24 0 0 1 67 48" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" opacity="0.7" />
+  <!-- Inner Signal Wave -->
+  <path d="M41 56 A12 12 0 0 1 59 56" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" />
+  
+  <!-- Grocery Basket / Shopping Cart Structure -->
+  <!-- Basket Main Body -->
+  <path d="M35 63 L65 63 L61 77 L39 77 Z" fill="#ffffff" />
+  <!-- Grid Lines on Basket (to make it look like wire basket) -->
+  <path d="M43 63 L45 77" stroke="#005C3E" stroke-width="1.5" />
+  <path d="M50 63 L50 77" stroke="#005C3E" stroke-width="1.5" />
+  <path d="M57 63 L55 77" stroke="#005C3E" stroke-width="1.5" />
+  <path d="M36 70 L64 70" stroke="#005C3E" stroke-width="1.5" />
+  
+  <!-- Basket Handles -->
+  <path d="M39 63 C39 58, 47 58, 47 63" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round" />
+  <path d="M61 63 C61 58, 53 58, 53 63" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round" />
+  
+  <!-- Tiny WiFi Dot/Food Pellet -->
+  <circle cx="50" cy="83" r="2.5" fill="#10B981" />
+</svg>

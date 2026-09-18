@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#0D241A">
+    <title>Warung Berkah - Hotspot WiFi 24 Jam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-container">
+    <!-- Hero Banner with Curved Bottom -->
+    <header class="hero-banner">
+        <div class="hero-overlay"></div>
+        
+        <!-- Top Status Row -->
+        <div class="hero-top-row">
+            <div class="glass-pill">
+                <span class="live-dot"></span>
+                Hotspot Area Aktif
+            </div>
+            <div class="glass-pill weather-pill">
+                🏪 Buka 24 Jam
+            </div>
+        </div>
+
+        <!-- Bottom Titles in Hero -->
+        <div class="hero-bottom-text">
+            <div class="hero-subtitle">SEMBAKO & KELONTONG MODERN</div>
+            <h1 class="hero-title">Warung Berkah WiFi</h1>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="app-body">
+        <!-- Featured Info Card -->
+        <div class="info-card">
+            <div class="info-icon-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+                    <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+                    <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                    <line x1="12" y1="20" x2="12.01" y2="20"></line>
+                </svg>
+            </div>
+            <div class="info-content">
+                <h2>Warung Berkah High-Speed WiFi</h2>
+                <p>Nikmati koneksi internet cepat & stabil selama belanja Anda</p>
+            </div>
+        </div>
+
+        <!-- Pill Segmented Tabs -->
+        <div class="pill-tabs">
+            <button type="button" id="tab-voucher" class="tab-btn active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                    <line x1="7" y1="15" x2="7.01" y2="15"></line>
+                    <line x1="11" y1="15" x2="13" y2="15"></line>
+                </svg>
+                Voucher Toko
+            </button>
+            <button type="button" id="tab-member" class="tab-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                Member / Kasir
+            </button>
+        </div>
+
+        <!-- Alert Error -->
+        <div id="error-box" class="error-banner" style="display: none;">
+            <span>⚠️</span>
+            <div id="error-msg-text">Silakan masukkan kode voucher Anda</div>
+        </div>
+
+        <!-- MikroTik Login Form -->
+        <form id="login-form" action="$(link-login-only)" method="post">
+            <input type="hidden" name="dst" value="$(link-orig)" />
+            <input type="hidden" name="popup" value="true" />
+
+            <!-- Input Username / Voucher -->
+            <div class="form-group">
+                <div class="form-label-row">
+                    <label id="input-label-username" for="username" class="form-label">Kode Voucher Toko</label>
+                    <a href="javascript:void(0)" id="input-helper-link" class="form-helper-link">Tertera di voucher</a>
+                </div>
+                <div class="input-box">
+                    <span class="input-leading-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path d="M21 2l-2 2m-2-2l2 2m-4 4l2-2m-2 2l-6 6a5 5 0 0 1-7-7l6-6m2 2l2-2"></path>
+                        </svg>
+                    </span>
+                    <input type="text" id="username" name="username" placeholder="MASUKKAN KODE VOUCHER" required class="android-input code-font" autocomplete="off" autocapitalize="characters" autofocus>
+                    <button type="button" id="btn-clear-user" class="input-trailing-action" aria-label="Hapus Teks" style="display: none;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Input Password (Member Mode) -->
+            <div id="password-container" class="form-group" style="display: none; margin-top: 10px;">
+                <div class="form-label-row">
+                    <label for="password" class="form-label">Password Akun</label>
+                </div>
+                <div class="input-box">
+                    <span class="input-leading-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </span>
+                    <input type="password" id="password" name="password" placeholder="Password member" class="android-input" autocomplete="off">
+                    <button type="button" id="toggle-password" class="input-trailing-action" aria-label="Toggle Password">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Submit Button -->
+            <button type="submit" class="btn-primary-action" style="margin-top: 12px;">
+                <span id="btn-submit-text">Sambungkan WiFi Toko</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </button>
+        </form>
+
+        <!-- Quick Action Grid (2 Columns) -->
+        <div class="quick-grid">
+            <div id="shortcut-scan-btn" class="quick-pill-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M3 7V5a2 2 0 0 1 2-2h2"></path>
+                    <path d="M17 3h2a2 2 0 0 1 2 2v2"></path>
+                    <path d="M21 17v2a2 2 0 0 1-2 2h-2"></path>
+                    <path d="M7 21H5a2 2 0 0 1-2-2v-2"></path>
+                </svg>
+                Scan QR Voucher
+            </div>
+            <a href="https://wa.me/6281234567890?text=Halo%20Kasir%20Warung%20Berkah,%20saya%20mau%20beli%20voucher%20WiFi" target="_blank" class="quick-pill-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                Bantuan & Kasir
+            </a>
+        </div>
+
+        <div class="section-divider-dash"></div>
+
+        <!-- Pilihan Paket WiFi (Price List Cards) -->
+        <div class="section-header">
+            <div class="section-title">
+                <span style="color: var(--accent-terracotta);">🏷️</span> Pilihan Paket WiFi
+            </div>
+            <div class="section-badge-speed">
+                Kecepatan s/d 20 Mbps
+            </div>
+        </div>
+
+        <div class="package-list">
+            <!-- Paket 1 -->
+            <div class="package-card" onclick="selectPackage('2JAM')">
+                <div class="package-left">
+                    <div class="package-icon-box">🛒</div>
+                    <div class="package-info">
+                        <h3>Paket Santai Toko</h3>
+                        <p>⏱️ 2 Jam • Speed up to 5 Mbps</p>
+                    </div>
+                </div>
+                <div class="package-right">
+                    <div class="package-price">Rp 2.000</div>
+                    <div class="package-action-text">Pilih Paket →</div>
+                </div>
+            </div>
+
+            <!-- Paket 2 -->
+            <div class="package-card" onclick="selectPackage('6JAM')">
+                <div class="package-left">
+                    <div class="package-icon-box">📦</div>
+                    <div class="package-info">
+                        <h3>Paket Nongkrong Asik</h3>
+                        <p>⏱️ 6 Jam • Speed up to 10 Mbps</p>
+                    </div>
+                </div>
+                <div class="package-right">
+                    <div class="package-price">Rp 5.000</div>
+                    <div class="package-action-text">Pilih Paket →</div>
+                </div>
+            </div>
+
+            <!-- Paket 3 -->
+            <div class="package-card" onclick="selectPackage('24JAM')">
+                <div class="package-left">
+                    <div class="package-icon-box">🚀</div>
+                    <div class="package-info">
+                        <h3>Paket Puas 24 Jam</h3>
+                        <p>⏱️ 24 Jam • Speed up to 20 Mbps</p>
+                    </div>
+                </div>
+                <div class="package-right">
+                    <div class="package-price">Rp 10.000</div>
+                    <div class="package-action-text">Pilih Paket →</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Spot Populer / Layanan Toko Tags Strip -->
+        <div class="tags-section" style="margin-top: 4px;">
+            <div class="tags-title">LAYANAN & PRODUK TOKO</div>
+            <div class="tags-scroll">
+                <div class="tag-pill">🍚 Beras & Minyak</div>
+                <div class="tag-pill">🥚 Telur Segar</div>
+                <div class="tag-pill">☕ Kopi & Minuman</div>
+                <div class="tag-pill">📱 Pulsa & PLN</div>
+                <div class="tag-pill">🛵 Pesan Antar</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p><strong>Warung Berkah Kelontong</strong> • Hotspot WiFi 24 Jam</p>
+        </footer>
+    </main>
+</div>
+
+<!-- Modal Panduan Scan QR (Android Bottom Sheet) -->
+<div id="scanner-modal" class="modal-backdrop" style="display: none;">
+    <div class="modal-sheet">
+        <div class="modal-head">
+            <h3>Cara Login Scan QR</h3>
+            <button type="button" id="close-scanner" class="modal-close-btn" aria-label="Tutup">&times;</button>
+        </div>
+        <div class="modal-step-list">
+            <div class="modal-step-item">
+                <span class="step-num">1</span>
+                <span>Buka aplikasi kamera ponsel Anda atau Google Lens.</span>
+            </div>
+            <div class="modal-step-item">
+                <span class="step-num">2</span>
+                <span>Arahkan kamera ke kode QR yang tertera pada voucher toko.</span>
+            </div>
+            <div class="modal-step-item">
+                <span class="step-num">3</span>
+                <span>Ketuk tautan notifikasi yang muncul di layar untuk langsung masuk otomatis.</span>
+            </div>
+        </div>
+        <button type="button" id="close-guide-btn" class="btn-primary-action" style="margin-top: 16px; height: 46px; font-size: 14px;">
+            Saya Mengerti
+        </button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

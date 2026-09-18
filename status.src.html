@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#0D241A">
+    <title>Status Koneksi - Warung Berkah</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="initStatusPage()">
+
+<div class="app-container">
+    <!-- Hero Banner with Curved Bottom -->
+    <header class="hero-banner" style="height: 180px;">
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-top-row">
+            <div class="glass-pill">
+                <span class="live-dot"></span>
+                Koneksi Terhubung
+            </div>
+            <div class="glass-pill weather-pill">
+                ⚡ Internet Aktif
+            </div>
+        </div>
+
+        <div class="hero-bottom-text">
+            <div class="hero-subtitle">STATUS KONEKSI HOTSPOT</div>
+            <h1 class="hero-title" style="font-size: 19px;">Warung Berkah WiFi</h1>
+        </div>
+    </header>
+
+    <main class="app-body">
+        <!-- Status Receipt Card -->
+        <div class="receipt-box">
+            <div class="receipt-row">
+                <span class="receipt-label">Pelanggan / User</span>
+                <span class="receipt-val highlight" id="stat-username">$(username)</span>
+            </div>
+            <div class="receipt-row">
+                <span class="receipt-label">Tipe Akses</span>
+                <span class="receipt-val" id="stat-type">Voucher Toko</span>
+            </div>
+            <div class="receipt-row">
+                <span class="receipt-label">Alamat IP</span>
+                <span class="receipt-val" id="stat-ip">$(ip)</span>
+            </div>
+            <div class="receipt-row">
+                <span class="receipt-label">MAC Address</span>
+                <span class="receipt-val" id="stat-mac">$(mac)</span>
+            </div>
+            <div class="receipt-row">
+                <span class="receipt-label">Waktu Aktif (Uptime)</span>
+                <span class="receipt-val highlight" id="stat-uptime">$(uptime)</span>
+            </div>
+            <div class="receipt-row">
+                <span class="receipt-label">Upload / Download</span>
+                <span class="receipt-val">$(bytes-in-nice) / $(bytes-out-nice)</span>
+            </div>
+            <div class="receipt-row">
+                <span class="receipt-label">Sisa Waktu / Kuota</span>
+                <span class="receipt-val">$(session-time-left)</span>
+            </div>
+        </div>
+
+        <!-- Disconnect Button -->
+        <form action="$(link-logout)" name="logout" id="logout-form">
+            <input type="hidden" name="erase-cookie" value="true" />
+            <button type="submit" class="btn-disconnect">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="width: 17px; height: 17px;">
+                    <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                    <line x1="12" y1="2" x2="12" y2="12"></line>
+                </svg>
+                Putuskan Sambungan
+            </button>
+        </form>
+
+        <!-- Quick Links -->
+        <div class="quick-grid">
+            <a href="javascript:window.location.reload();" class="quick-pill-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M23 4v6h-6"></path>
+                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                </svg>
+                Muat Ulang
+            </a>
+            <a href="https://wa.me/6281234567890?text=Halo%20Kasir%20Warung%20Berkah,%20saya%20sedang%20terhubung%20di%20WiFi" target="_blank" class="quick-pill-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                Chat Kasir
+            </a>
+        </div>
+
+        <footer class="app-footer">
+            <p><strong>Warung Berkah Kelontong</strong> • Selamat Menikmati Internet</p>
+        </footer>
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
